@@ -1,0 +1,20 @@
+<div class="message">
+  <% if session[:message] %>
+    <%= session.delete(:message) %>
+  <% end %>
+</div>
+
+<form action="/<%= params[:filename] %>/duplicate" method="post">
+  <label>Edit document name:</label><br>
+    <input type="text" name="new_name" value="<%= params[:filename] %>">
+  </label>
+
+  <br>
+  <br>
+  
+  <label>Edit new document content:</label>
+  <div>
+    <textarea id="text_changes" name="text_changes" rows="25" cols="100"><%= @file %></textarea>
+  </div>
+  <button type="submit">Save Changes</button>
+</form>

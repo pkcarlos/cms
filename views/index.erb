@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/cms.css" />
+    <script src="/javascripts/jquery-3.7.0.js"></script>
+    <script src="/javascripts/application.js"></script>
+    <title>File-Based CMS</title>
+  </head>
+  <body>
+    <div class="message">
+      <% if session[:message] %>
+        <%= session.delete(:message) %>
+      <% end %>
+    </div>
+
+    <ul>
+      <% @files.each do |file| %>
+        <li>
+          <a href="/<%= file %>"><%= file %></a>
+
+          <form class="inline" action="/<%= file %>/edit" method="get">
+            <button type="submit">Edit</button>
+          </form>
+
+          <form class="inline delete" action="/<%= file %>/delete" method="post">
+            <button type="submit">Delete</button>
+          </form>
+
+          <form class="inline" action="/<%= file %>/duplicate" method="get">
+            <button type="submit">Duplicate</button>
+          </form>
+        </li>
+      <% end %>
+    </ul>
+
+    <p><a href="/new">New Document</a></p>
+
+    <% if session[:username] %>
+      <form class="user-status" action="/users/signout" method="post">
+        Signed in as <%= session[:username] %>.
+        <button type="submit">Sign Out</button>
+      </form>
+    <% else %>
+      <form action="/users/signin" method="get">
+        <button type="submit">Sign In</button>
+      </form>
+    <% end %>
+
+    <form action="/signup" method="get">
+      <button type="submit">Sign Up</button>
+    </form>
+  </body>
+</html>

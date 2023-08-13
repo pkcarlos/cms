@@ -1,0 +1,14 @@
+<form action="/users/signin" method="post">
+  <div>
+    <label for="username">Username:
+      <input type="text" name="username" value="<%= @user_input %>">
+    </label>
+  </div>
+
+  <div>
+    <label for="password">Password
+      <input type="text" name="password">
+    </label>
+  </div>
+  <button type="submit">Sign In</button>
+</form>

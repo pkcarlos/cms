@@ -1,0 +1,10 @@
+<form action="/<%= params[:filename] %>" method="post">
+  <label>Edit document name:</label>
+    <input type="text" name="docname" value="<%= params[:filename] %>"><br><br>
+  <label>Edit content of <%= params[:filename] %>:</label>
+  <div>
+    <textarea id="text_changes" name="text_changes" rows="25" cols="100"><%= @file %></textarea>
+  </div>
+  <button type="submit">Save Changes</button>
+</form>
+

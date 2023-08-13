@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/cms.css" />
+    <script src="/javascripts/jquery-3.7.0.js"></script>
+    <script src="/javascripts/application.js"></script>
+    <title>File-Based CMS</title>
+  </head>
+  <body>
+    <div class="message">
+      <% if session[:message] %>
+        <%= session.delete(:message) %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
+    <div>
+      <a href="/">Home</a>
+    </div>
+  </body>
+</html>
