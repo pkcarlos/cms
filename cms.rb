@@ -222,6 +222,8 @@ post "/:filename/duplicate" do
   end
 end
 
+# fix: when deleting file when not signed in, message "you need to be signed in to do that" si not being displayed
+
 # modify CMS so that each version of a document is preserved as changes are made to it
 
 # fix: when clicking delete and not signed in, javascript message pops up; prioritize flash message sign in error
