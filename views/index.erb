@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/cms.css" />
-    <script src="/javascripts/jquery-3.7.0.js"></script>
-    <script src="/javascripts/application.js"></script>
     <title>File-Based CMS</title>
   </head>
   <body>
@@ -23,7 +21,7 @@
             <button type="submit">Edit</button>
           </form>
 
-          <form class="inline delete" action="/<%= file %>/delete" method="post">
+          <form class="inline" action="/<%= file %>/delete" method="post">
             <button type="submit">Delete</button>
           </form>
 

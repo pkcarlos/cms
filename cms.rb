@@ -8,7 +8,7 @@ require "bcrypt"
 
 configure do
 	enable :sessions
-	set :session_secret, "7d260d1ca94e347151d7de84bc2a239ced9dcf23347b0d5e1562a0a45fdc295d"
+	set :session_secret, SecureRandom.hex(32)
 end
 
 def data_path
@@ -34,7 +34,7 @@ end
 get "/" do
   file_path = File.join(data_path, "*")
   @files = Dir.glob(file_path).map { |path| File.basename(path) }
-  erb :index
+  erb :index, layout: false
 end
 
 # view new document form
@@ -208,10 +208,6 @@ post "/:filename/duplicate" do
     @file = File.read(path)
     session[:message] = "A file name is required."
     erb :duplicate
-  elsif params[:new_name] == params[:filename]
-    # warn user that duplicated file's name has not been changed.  This will overwrite the current file of the same name. continue?
-    # if user chooses to continue, flash message document overwritten
-    # otherwise, reload duplicate page
   else
     # new file created with changes saved (works!)
     path = File.join(data_path, params[:new_name])
@@ -221,17 +217,4 @@ post "/:filename/duplicate" do
     redirect "/"
   end
 end
-
-# fix: when deleting file when not signed in, message "you need to be signed in to do that" si not being displayed
-
-# modify CMS so that each version of a document is preserved as changes are made to it
-
-# fix: when clicking delete and not signed in, javascript message pops up; prioritize flash message sign in error
-# if signed in user is admin, can view file with users and passwords
-# rename document
-# assign someone as admin
-  # can view list of users
-# must have file extensions to create file
-# password requirements
-# add home button
-# capability of adding images
+ # when deleting document from index page, warning that action cannot be undone appears. If user clicks "ok", file is not deleted, simply returns to index page
